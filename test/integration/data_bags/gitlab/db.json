@@ -1,0 +1,9 @@
+{
+  "id": "db",
+  "gitlab": {
+    "encrypted_data": "Mp74S4FrpLBboQ0mwbTah9OqAhZY+0kXiypq2U8mg/pu7pesaSP6DZYosJjJ\nxkqiTI7+VzKDBmG5ymlWhxZh2QUEL6BHmAIGfhiF6vTouRA=\n",
+    "iv": "YUHwp4yZZ33ak4SPolPTAw==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}

@@ -1,0 +1,41 @@
+# Chef generated. Don't edit. Changes will be overwritten
+#
+# GitLab user. git by default
+user: <%= node['gitlab']['git_user'] %>
+
+# Url to gitlab instance. Used for api calls. Should be ends with slash.
+gitlab_url: "https://<%= node['gitlab']['server_name'] %>/"
+
+http_settings:
+#  user: <%= node['gitlab']['shell']['http_user'] %>
+#  password: <%= node['gitlab']['shell']['http_password'] %>
+#  ca_file: <%= node['gitlab']['shell']['ca_file'] %>
+#  ca_path: <%= node['gitlab']['shell']['ca_path'] %>
+  self_signed_cert: <%= node['gitlab']['shell']['self_signed_cert'] %>
+
+# Repositories path
+# REPOS_PATH MUST NOT BE A SYMLINK!!!
+repos_path: "<%= node['gitlab']['shell']['repos_path'] %>"
+
+# File used as authorized_keys for gitlab user
+auth_file: "<%= node['gitlab']['shell']['auth_file'] %>"
+
+# Redis settings used for pushing commit notices to gitlab
+redis:
+  bin: <%= node['gitlab']['shell']['redis']['bin'] %>
+  host: <%= node['gitlab']['shell']['redis']['host'] %>
+  port: <%= node['gitlab']['shell']['redis']['port'] %>
+  # socket: <%= node['gitlab']['shell']['redis']['socket'] %>
+  namespace: <%= node['gitlab']['shell']['redis']['namespace'] %>
+
+# Log file.
+# Default is gitlab']['shell.log in the root directory.
+log_file: "<%= node['gitlab']['shell']['log_file'] %>"
+
+# Log level. INFO by default
+log_level: <%= node['gitlab']['shell']['log_level'] %>
+
+# Audit usernames.
+# Set to true to see real usernames in the logs instead of key ids, which is easier to follow, but
+# incurs an extra API call on every gitlab']['shell command.
+audit_usernames: <%= node['gitlab']['shell']['audit_usernames'] %>

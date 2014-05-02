@@ -1,0 +1,23 @@
+# Chef generated. Don't edit. Changes will be overwritten
+# GitLab logrotate settings
+# based on: http://stackoverflow.com/a/4883967
+
+<%= node['gitlab']['git_home'] %>/gitlab/log/*.log {
+    weekly
+    missingok
+    rotate 52
+    compress
+    delaycompress
+    notifempty
+    copytruncate
+}
+
+<%= node['gitlab']['shell']['log_file'] %> {
+    weekly
+    missingok
+    rotate 52
+    compress
+    delaycompress
+    notifempty
+    copytruncate
+}

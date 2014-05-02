@@ -1,0 +1,57 @@
+{
+  "id": "ldap",
+  "base": {
+    "encrypted_data": "ery0GTXvOCzpLHuIPpeVOzypKD/Q2TU37Y9daHg3patdNZm1qmWDc1VfjRi3\n8aGn\n",
+    "iv": "HZccLjNTRxNZaO+npfhffQ==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "bind_dn": {
+    "encrypted_data": "/YCocmUMgzh+p99XQTWQWcns2jmqTYZrE1sbMb6P3D1MrVyZV1sA3d+OR9Gq\nZxL9\n",
+    "iv": "v+NgAv2QyR62OSxU2Qgokg==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "host": {
+    "encrypted_data": "TK+aDzd//C8rlY0INueo6/ZjdMPSnlnqQNNVPxKoNQs+rdnSce82Tb4CIvR2\nwAAl\n",
+    "iv": "OTPOKXKUNSTRehTUpn1gzg==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "method": {
+    "encrypted_data": "nmrFL5dTP6OvtMTs0QSbenZ32PYG2ob0OfnpYOeDNek=\n",
+    "iv": "FWq/foXgH2DEO8zxUwV17A==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "password": {
+    "encrypted_data": "YUOcUDTsHFbtQZrwc+ODOYhS44iVz8/+weP4T49mb+52HL/IN16saLafRo6n\nneD2\n",
+    "iv": "EtZhsuywvI1GxHo09tm86Q==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "port": {
+    "encrypted_data": "R/MDfmqzRHHONSQTQ7FoMe2sddq0Bj/a9Vq8jIHLVIw=\n",
+    "iv": "kOfNZdBhvRuRbpYL+TcomA==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "uid": {
+    "encrypted_data": "gkKMmcxQBpg/0B+329lSUcBYV5nIWJm/n2uzTurWHJE6RUA0Qp/5388sLLSc\n/l98\n",
+    "iv": "iBbb4PFqGlkdD3kVWAUz9Q==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "user_filter": {
+    "encrypted_data": "wySfy4oZIIoInx4SrZ4VQpKQ9PP3jGfT/CbInHvg1d0=\n",
+    "iv": "QqVPJGmT+ib+sRm3gUNfSw==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "allow_username_or_email_login": {
+    "encrypted_data": "AWOqgWORY1w0AL/wFhM2JkBxJB/9OKYJCX+4YLDxuww=\n",
+    "iv": "kDJB6s7lgFC2LnDc5Q7EoA==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}

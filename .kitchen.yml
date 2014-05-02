@@ -1,0 +1,46 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+
+platforms:
+- name: wheezy-64
+  driver_config:
+    box: wheezy64
+    box_url: http://debbuild.bigpoint.net/wheezy64.box
+    network:
+    - ["forwarded_port", {guest: 443, host: 4743, auto_correct: true}]
+    customize:
+      memory: 1024
+- name: jessie-64
+  driver_config:
+    box: jessie64
+    box_url: http://debbuild.bigpoint.net/jessie64.box
+    network:
+    - ["forwarded_port", {guest: 443, host: 4843, auto_correct: true}]
+    customize:
+      memory: 1024
+
+suites:
+  - name: gitlab
+    run_list:
+      - recipe[gitlab::default]
+    attributes:
+      gitlab:
+        timeout: 120
+        ldap_enabled: "true"
+        mailer:
+          method: "sendmail"
+          address: null
+#      nginx-wrapper: 
+#        version: "1.4.4"
+#        build: "bigpoint-wheezy1_amd64"
+#        url: "http://debianmirror.bigpoint.net/bigpoint-wheezy/nginx_1.4.4-bigpoint-wheezy1_amd64.deb"
+# for local testing
+#      rsyslog: 
+#        server_ip: "10.32.20.41"
+#        port: 5544
+#        protocol: "udp"
+#        default_facility_logs: []

@@ -1,0 +1,12 @@
+# Chef generated. Don't edit. Changes will be overwritten
+#
+server {
+  listen   80;
+  server_name <%= node['gitlab']['server_name'] %>;
+  server_tokens off;
+  root /nowhere; # this doesn't have to be a valid path since we are redirecting, you don't have to change it.
+
+  location / {
+    rewrite     ^(.*)   https://<%= node['gitlab']['server_name'] %>$1 permanent;
+  }
+}

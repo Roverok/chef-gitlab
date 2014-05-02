@@ -1,0 +1,11 @@
+--- install	2013-06-17 10:12:11.000000000 +0200
++++ install.new	2013-06-17 10:15:14.910054955 +0200
+@@ -1,5 +1,8 @@
+ #!/usr/bin/env ruby
+ 
++require 'yaml'
++YAML::ENGINE.yamler = 'syck'
++
+ require_relative '../lib/gitlab_init'
+ 
+ #
