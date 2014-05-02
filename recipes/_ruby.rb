@@ -1,6 +1,6 @@
 # Encoding: UTF-8
 # Cookbook Name::       gitlab
-# Description::         Installs Ruby 2.0 and uses rbenv if nesassary
+# Description::         Installs Ruby
 # Recipe::              _ruby
 # Author::              Thorsten Winkler (<t.winkler@bigpoint.net>)
 
@@ -23,8 +23,16 @@ else
   end
 end
 
-%w{bundler ruby-rb-inotify}.each do |pkg|
-  package pkg do
+package 'ruby-rb-inotify' do
+  action :install
+end
+
+if node['lsb']['codename'] == 'wheezy'
+  gem_package 'bundler' do
+    action :install
+  end
+else
+  package 'bundler' do
     action :install
   end
 end

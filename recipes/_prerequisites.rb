@@ -21,6 +21,10 @@ link '/usr/bin/python2' do
   action :create
 end
 
+gem_package 'bundler' do
+  action :install
+end
+
 group node['gitlab']['git_group'] do
   action :create
 end

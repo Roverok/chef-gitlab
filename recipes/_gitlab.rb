@@ -50,7 +50,7 @@ template "#{node['gitlab']['git_home']}/gitlab/config/application.rb" do
   mode '0644'
 end
 
-db_db = Chef::EncryptedDataBagItem.load('gitlab', 'db')
+db_db = Chef::EncryptedDataBagItem.load('gitlab', 'db')[node['gitlab']['instance']]
 
 template "#{node['gitlab']['git_home']}/gitlab/config/database.yml" do
   source 'database.yml.erb'
