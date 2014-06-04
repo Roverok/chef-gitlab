@@ -24,7 +24,7 @@ template "#{node['gitlab']['git_home']}/gitlab/config/gitlab.yml" do
             'method' => db_ldap['method'],
             'bind_dn' => db_ldap['bind_dn'],
             'password' => db_ldap['password'],
-            'allow_username_or_email_login' => !db_ldap['allow_username_or_email_login'].nil? && db_ldap['allow_username_or_email_login'] ? 'true' : 'false',
+            'allow_username_or_email_login' => db_ldap['allow_username_or_email_login'],
             'base' => db_ldap['base'],
             'user_filter' => db_ldap['user_filter'])
   mode '0644'
@@ -121,13 +121,13 @@ directory node['gitlab']['git_repositories'] do
   mode '2770'
 end
 
-directory node['gitlab']['git_hooks'] do
-  action :create
-  recursive true
-  owner node['gitlab']['git_user']
-  group node['gitlab']['git_group']
-  mode '0775'
-end
+#directory node['gitlab']['git_hooks'] do
+#  action :create
+#  recursive true
+#  owner node['gitlab']['git_user']
+#  group node['gitlab']['git_group']
+#  mode '0775'
+#end
 
 bash 'configure_git_global' do
   cwd "#{node['gitlab']['git_home']}/gitlab"
@@ -136,23 +136,39 @@ bash 'configure_git_global' do
   code <<-EOH
     git config --global user.name "GitLab"
     git config --global user.email "#{node['gitlab']['email_from']}"
+    git config --global core.autocrlf input
   EOH
 end
 
 execute 'install_gems' do
   cwd "#{node['gitlab']['git_home']}/gitlab"
-  command "bundle install --deployment --without development test postgres aws"
+  command 'bundle install --deployment --without development test postgres aws'
   environment 'HOME' => node['gitlab']['git_home']
   user node['gitlab']['git_user']
-  not_if { File.exists?("#{node['gitlab']['git_home']}/gitlab/.gitlab-setup") }
+  not_if { File.exist?("#{node['gitlab']['git_home']}/gitlab/.gitlab-setup") }
 end
 
-execute 'gitlab-bundle-rake' do
-  command "echo yes | bundle exec rake gitlab:setup RAILS_ENV=production && touch .gitlab-setup"
+execute 'gitlab_shell' do
+  command "bundle exec rake gitlab:shell:install[#{node['gitlab']['shell']['version']}] REDIS_URL=redis://localhost:6379 RAILS_ENV=production"
   environment 'HOME' => node['gitlab']['git_home']
   cwd "#{node['gitlab']['git_home']}/gitlab"
   user node['gitlab']['git_user']
-  not_if { File.exists?("#{node['gitlab']['git_home']}/gitlab/.gitlab-setup") }
+  not_if { File.exist?("#{node['gitlab']['git_home']}/gitlab/.gitlab-setup") }
+end
+
+template "#{node['gitlab']['git_home']}/gitlab-shell/config.yml" do
+  source 'gitlab-shell_config.erb'
+  user node['gitlab']['git_user']
+  group node['gitlab']['git_group']
+  mode '0644'
+end
+
+execute 'init-db-and-adv-features' do
+  command 'echo yes | bundle exec rake gitlab:setup RAILS_ENV=production && touch .gitlab-setup'
+  environment 'HOME' => node['gitlab']['git_home']
+  cwd "#{node['gitlab']['git_home']}/gitlab"
+  user node['gitlab']['git_user']
+  not_if { File.exist?("#{node['gitlab']['git_home']}/gitlab/.gitlab-setup") }
 end
 
 template '/etc/default/gitlab' do
@@ -170,6 +186,6 @@ template '/etc/init.d/gitlab' do
 end
 
 service 'gitlab' do
-  action    [:enable, :start]
+  action [:enable, :start]
   supports :status => true, :start => true, :stop => true, :restart => true
 end

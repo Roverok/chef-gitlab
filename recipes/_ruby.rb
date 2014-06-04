@@ -4,19 +4,19 @@
 # Recipe::              _ruby
 # Author::              Thorsten Winkler (<t.winkler@bigpoint.net>)
 
-if node['gitlab']['ruby2']
-  %w{ruby1.9.1 ruby1.9.1-dev}.each do |pkg|
+if node['gitlab']['ruby2'] && system("dpkg -l ruby1.9.1 2>/dev/null | egrep -q \"^ii *ruby1.9.1 \"")
+  %w(ruby1.9.1 ruby1.9.1-dev).each do |pkg|
     package pkg do
       action :remove
     end
   end
-  %w{ruby2.0 ruby2.0-dev}.each do |pkg|
+  %w(ruby2.0 ruby2.0-dev).each do |pkg|
     package pkg do
       action :install
     end
   end
 else
-  %w{ruby ruby-dev}.each do |pkg|
+  %w(ruby ruby-dev).each do |pkg|
     package pkg do
       action :install
     end

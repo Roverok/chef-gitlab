@@ -5,7 +5,7 @@
 # Author::              Thorsten Winkler (<t.winkler@bigpoint.net>)
 
 if node['gitlab']['use_bp_percona']
-  node.set['bp-percona']['credidentials'] = [ 'gitlab', 'mysql', node['gitlab']['instance'] ]
+  node.set['bp-percona']['credidentials'] = ['gitlab', 'mysql', node['gitlab']['instance']]
   node.set_unless['bp-percona']['innodb-buffer-pool-size'] = '256M'
   include_recipe 'bp-percona::_server'
   root_password = get_root_password
