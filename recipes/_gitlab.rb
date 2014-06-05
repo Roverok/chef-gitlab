@@ -43,13 +43,6 @@ cookbook_file "#{node['gitlab']['git_home']}/gitlab/config/initializers/rack_att
   mode 0644
 end
 
-template "#{node['gitlab']['git_home']}/gitlab/config/application.rb" do
-  source 'application.erb'
-  user node['gitlab']['git_user']
-  group node['gitlab']['git_group']
-  mode '0644'
-end
-
 db_db = Chef::EncryptedDataBagItem.load('gitlab', 'db')[node['gitlab']['instance']]
 
 template "#{node['gitlab']['git_home']}/gitlab/config/database.yml" do

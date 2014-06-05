@@ -204,7 +204,7 @@ production: &base
 
   ## GitLab Shell settings
   gitlab_shell:
-    path: <%= "#{node['gitlab']['git_home']}}/gitlab-shell" %>
+    path: <%= "#{node['gitlab']['git_home']}/gitlab-shell" %>
 
     # REPOS_PATH MUST NOT BE A SYMLINK!!!
     repos_path: <%= node['gitlab']['git_repositories'] %>
