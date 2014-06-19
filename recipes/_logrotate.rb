@@ -9,4 +9,5 @@ template '/etc/logrotate.d/gitlab' do
   user 'root'
   group 'root'
   mode '0644'
+  variables('log_days' => node['gitlab']['log_days'])
 end

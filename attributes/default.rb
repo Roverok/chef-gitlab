@@ -23,6 +23,7 @@ default['gitlab']['port'] = '443'
 default['gitlab']['timeout'] = 45
 default['gitlab']['email_from'] = 'gitlab@bigpoint.net'
 default['gitlab']['support_email'] = 'sysadmins@bigpoint.net'
+default['gitlab']['log_days'] = 14
 default['gitlab']['mailer']['method'] = 'smtp'
 default['gitlab']['mailer']['address'] = 'mailsrv.bigpoint.net'
 default['gitlab']['mailer']['port'] = 25

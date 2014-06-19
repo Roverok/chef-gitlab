@@ -5,7 +5,7 @@
 <%= node['gitlab']['git_home'] %>/gitlab/log/*.log {
     weekly
     missingok
-    rotate 52
+    rotate <%= @log_days %>
     compress
     delaycompress
     notifempty
@@ -15,7 +15,7 @@
 <%= node['gitlab']['shell']['log_file'] %> {
     weekly
     missingok
-    rotate 52
+    rotate <%= @log_days %>
     compress
     delaycompress
     notifempty
