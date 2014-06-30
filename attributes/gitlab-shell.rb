@@ -1,5 +1,5 @@
 # Encoding: UTF-8
-default['gitlab']['shell']['version'] = 'v1.9.4'
+default['gitlab']['shell']['version'] = 'v1.9.6'
 default['gitlab']['shell']['self_signed_cert'] = true
 default['gitlab']['shell']['repos_path'] = '/home/git/repositories'
 default['gitlab']['shell']['auth_file'] = '/home/git/.ssh/authorized_keys'

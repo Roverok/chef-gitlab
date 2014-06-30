@@ -6,7 +6,7 @@ default['gitlab']['ruby2'] = ! `apt-cache search ruby2.0`.empty?
 default['gitlab']['server_name'] = 'gitlab.bigpoint.net'
 default['gitlab']['ssl_private'] = '/etc/ssl/private/gitlab.key'
 default['gitlab']['ssl_bundle'] = '/etc/ssl/certs/gitlab-bundle.pem'
-default['gitlab']['gitlab_version'] = '6-9-stable'
+default['gitlab']['gitlab_version'] = '7-0-stable'
 default['gitlab']['p_packages'] = %w{build-essential zlib1g-dev libyaml-dev libssl-dev
                                      libgdbm-dev libreadline-dev libncurses5-dev libffi-dev
                                      curl git-core openssh-server redis-server checkinstall
